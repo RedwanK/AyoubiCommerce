@@ -86,4 +86,14 @@ class Customers
     {
         $this->password = $password;
     }
+
+    public function getKeySecret()
+    {
+        return $this->keySecret;
+    }
+
+    public function setKeySecret($keySecret)
+    {
+        $this->keySecret = $keySecret;
+    }
 }
