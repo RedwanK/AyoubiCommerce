@@ -1,61 +1,33 @@
 <?php
 require_once PATH_ENTITY . 'Customers.php';
 require_once 'DAO.php';
+require_once 'CustomersStructure.php';
 class CustomersDAO extends DAO
 {
-
     public function getCustomersByKeySecret($log)
     {
-        $requete = "SELECT * FROM Customerss WHERE key_secret = ?";
+        $requete = "SELECT * FROM Customers WHERE key_secret = ?";
         $donnees = array($log);
         $res = $this->queryRow($requete, $donnees);
 
         if ($res) {
-            return new Customers($res['id'], $res['admin'], $res['pseudo'], $res['email'], $res['password'], $res['creation_date'], $res['key_secret']);
+            return new Customers($res[CustomersStructure::ID], $res[CustomersStructure::FIRSTNAME], $res[CustomersStructure::FAMILYNAME], $res[CustomersStructure::ADDRESS], $res[CustomersStructure::USERNAME], $res[CustomersStructure::PASSWORD], $res[CustomersStructure::KEY_SECRET]);
         } else {
             return null;
         }
 
     }
 
-    public function getNbCustomersByEmail($email)
+    public function getCustomersById($id)
     {
-        $requete = "SELECT count(*) as numberEmail FROM Customerss WHERE email = ?";
-        $donnees = array($email);
-        $res = $this->queryRow($requete, $donnees);
-
-        if ($res) {
-            return $res['numberEmail'];
-        } else {
-            return 0;
-        }
-
-    }
-
-    public function getNbCustomersById($id)
-    {
-        $requete = "SELECT * FROM Customerss WHERE id = ?";
+        $requete = "SELECT * FROM Customers WHERE id = ?";
         $donnees = array($id);
         $res = $this->queryRow($requete, $donnees);
 
         if ($res) {
-            return new Customers($res['id'], $res['admin'], $res['pseudo'], $res['email'], $res['password'], $res['creation_date'], $res['key_secret']);
+            return new Customers($res[CustomersStructure::ID], $res[CustomersStructure::FIRSTNAME], $res[CustomersStructure::FAMILYNAME], $res[CustomersStructure::ADDRESS], $res[CustomersStructure::USERNAME], $res[CustomersStructure::PASSWORD], $res[CustomersStructure::KEY_SECRET]);
         } else {
-            return 0;
-        }
-
-    }
-
-    public function getCustomersByEmail($email)
-    {
-        $requete = "SELECT * FROM Customerss WHERE email = ?";
-        $donnees = array($email);
-        $res = $this->queryRow($requete, $donnees);
-
-        if ($res) {
-            return new Customers($res['id'], $res['admin'], $res['pseudo'], $res['email'], $res['password'], $res['creation_date'], $res['key_secret']);
-        } else {
-            return null;
+            return false;
         }
 
     }

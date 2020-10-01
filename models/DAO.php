@@ -19,16 +19,15 @@ abstract class DAO
     private function requete($sql, $args = null)
     {
         if ($args == null) {
-            $pdos = Connexion::getInstance()->getBdd()->query($sql); // exécution directe
+            $pdos = Connexion::getInstance()->getBdd()->query($sql); // direct exect
         } else {
-            $pdos = Connexion::getInstance()->getBdd()->prepare($sql); // requête préparée
+            $pdos = Connexion::getInstance()->getBdd()->prepare($sql); // prepared exec (with args)
             $pdos->execute($args);
         }
         return $pdos;
     }
 
-    // retourne un tableau 1D avec les données d'un seul enregistrement
-    // ou false
+    // return a single element | false
     public function queryRow($sql, $args = null)
     {
         try
@@ -47,7 +46,7 @@ abstract class DAO
         return $res;
     }
 
-    //retourne un tableau 2D avec éventuellement plusieurs enregistrements
+    //return all lines
     public function queryAll($sql, $args = null)
     {
         try
@@ -66,6 +65,7 @@ abstract class DAO
         return $res;
     }
 
+    // insert
     public function queryInsert($sql, $args = null)
     {
         try
