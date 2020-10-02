@@ -1,4 +1,6 @@
 <?php
+require_once 'config/twig.php';
+require_once 'controllers/HomeController.php';
 
 // Racine folders
 define('PATH_CONTROLLERS', './controllers/c_');

@@ -1,4 +1,7 @@
 <?php
+
+namespace Config\Twig;
+
 spl_autoload_register(function ($classname) {
     $dirs = array (
         './lib/twig/'
@@ -13,7 +16,25 @@ spl_autoload_register(function ($classname) {
     }
 
 });
-$loader = new \Twig\Loader\FilesystemLoader('templates');
-$twig = new \Twig\Environment($loader, [
-    'cache' => 'cache',
-]);
+
+class Twig
+{
+    public $twig;
+    private $loader;
+
+    public function __construct() {
+        $this->loader = new \Twig\Loader\FilesystemLoader('templates');
+        $this->twig = new \Twig\Environment($this->loader, [
+            'cache' => 'var/cache',
+            'debug' => true
+        ]);
+    }
+
+    public function getLoader() {
+        return $this->loader;
+    }
+
+    public function getTwig() {
+        return $this->twig;
+    }
+}
