@@ -54,17 +54,18 @@ CREATE TABLE `Customers` (
   `familyname` varchar(20) NOT NULL,
   `address` text NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(128) NOT NULL
+  `password` varchar(128) NOT NULL,
+  `key_secret` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `Customers`
 --
 
-INSERT INTO `Customers` (`id`, `firstname`, `familyname`, `address`, `username`, `password`) VALUES
-(1, 'George', 'Abitbol', '25 rue la plus classe\r\n00000 Monde', 'george', '288078ebd52ab91e351b6255e08d0e21'),
-(2, 'Jean', 'Némar', '99 avenue de la discorde\r\n69999 Pas Lyon', 'colere', 'a94f3faf2fe941f162b6ebfe08ad395d'),
-(3, 'Ema', 'Déproblaime', '1729 bd de la révolution\r\n12345 Bourg-les-jonq', 'ema', 'b1fa72e8af53b23a22551d89f3a7390d');
+INSERT INTO `Customers` (`id`, `firstname`, `familyname`, `address`, `username`, `password`, `key_secret`) VALUES
+(1, 'George', 'Abitbol', '25 rue la plus classe\r\n00000 Monde', 'george', '288078ebd52ab91e351b6255e08d0e21', 'cenubycuzegfuibequcbefygzuoqeif'),
+(2, 'Jean', 'Némar', '99 avenue de la discorde\r\n69999 Pas Lyon', 'colere', 'a94f3faf2fe941f162b6ebfe08ad395d', 'fzefchoizuegnzieytgfuycez'),
+(3, 'Ema', 'Déproblaime', '1729 bd de la révolution\r\n12345 Bourg-les-jonq', 'ema', 'b1fa72e8af53b23a22551d89f3a7390d', 'vbyguifzgzyediozhuizehf');
 
 -- --------------------------------------------------------
 
