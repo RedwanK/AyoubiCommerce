@@ -12,6 +12,6 @@ class HomeController extends AbstractController
     }
 
     public function show() {
-        echo $this->twig->render('index.html', [ 'name' => 'DARYL' ]);
+        echo $this->twig->render('Home/index.html.twig', []);
     }
 }
