@@ -28,6 +28,7 @@ class Twig
             'cache' => 'var/cache',
             'debug' => true
         ]);
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     public function getLoader() {

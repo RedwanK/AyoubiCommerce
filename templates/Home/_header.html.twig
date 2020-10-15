@@ -1,0 +1,30 @@
+<div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui container">
+        <div class="ui large secondary inverted pointing menu">
+            <a class="toc item"><i class="sidebar icon"></i></a>
+            <a class="active item">Accueil</a>
+            <div class="right item">
+                {% if session['connect'] is not defined %}<a class="ui inverted button" href="/connexion">Connexion</a>{% else %}<a class="ui inverted button" href="/deconnexion">Déconnexion</a>{% endif %}
+                <a class="ui inverted button">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui text container">
+        <h1 class="ui inverted header">Ayoubi commerce</h1>
+        <h2>Ici achetez tout ce que vous désirez</h2>
+        <div class="ui huge primary button">
+            Consultez nos produits
+        </div>
+    </div>
+</div>
+
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Accueil</a>
+        <div class="right menu">
+            <div class="item"><a class="ui button">Connexion</a></div>
+            <div class="item"><a class="ui primary button">Créer un compte</a></div>
+        </div>
+    </div>
+</div>
