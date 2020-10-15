@@ -4,7 +4,7 @@ require_once 'DAO.php';
 require_once 'CustomersStructure.php';
 class CustomersDAO extends DAO
 {
-    public function getCustomersByKeySecret($log)
+    public function getCustomerByKeySecret($log)
     {
         $requete = "SELECT * FROM Customers WHERE key_secret = ?";
         $donnees = array($log);
@@ -18,10 +18,10 @@ class CustomersDAO extends DAO
 
     }
 
-    public function getCustomersById($id)
+    public function getCustomerByUsername($username)
     {
-        $requete = "SELECT * FROM Customers WHERE id = ?";
-        $donnees = array($id);
+        $requete = "SELECT * FROM Customers WHERE username = ?";
+        $donnees = array($username);
         $res = $this->queryRow($requete, $donnees);
 
         if ($res) {
