@@ -18,7 +18,7 @@ class CustomersController extends AbstractController
      */
     public function connexion()
     {
-        $customersDAO = new CustomersDAO();
+        $customersDAO = new \App\Models\CustomersDAO();
 
         /* Check if cookie exist */
         if (!empty($_COOKIE['log']) && !isset($_SESSION['connect'])) {
@@ -66,16 +66,16 @@ class CustomersController extends AbstractController
                 exit();
             }
 
-            header('location: ../connexion?error=INCONNUE&email=' . $email);
+            header('location: ../connexion?error=INCONNUE&username=' . $username);
             exit();
 
         }
 
-        $email = null;
+        $username = null;
         $alert = null;
 
-        if (isset($_GET['email'])) {
-            $email = htmlspecialchars($_GET['email']);
+        if (isset($_GET['username'])) {
+            $username = htmlspecialchars($_GET['username']);
         }
 
         /* Check if error exist */
@@ -84,8 +84,8 @@ class CustomersController extends AbstractController
             $alert = choixAlert($message);
         }
 
-        echo $this->twig->render('connexion.html', [
-            'email' => $email,
+        echo $this->twig->render('connexion.html.twig', [
+            'username' => $username,
             'alert' => $alert,
         ]);
     }
@@ -103,12 +103,12 @@ class CustomersController extends AbstractController
         session_destroy();
         /* Destroy the cookie : remove x secondes to time */
         setcookie(
-            'log', 
-            '', 
+            'log',
+            '',
             time() - 3444,
-            null, 
-            null, 
-            false, 
+            null,
+            null,
+            false,
             true
         );
 

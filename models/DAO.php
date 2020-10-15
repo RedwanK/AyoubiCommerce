@@ -1,4 +1,6 @@
 <?php
+namespace App\Models;
+
 require_once PATH_MODELS . 'Connexion.php';
 abstract class DAO
 {

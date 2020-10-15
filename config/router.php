@@ -5,8 +5,9 @@ function routes($router) {
     $router->get('/', 'home:show', 'home');
 
     /* Customers */
-    $router->get('/', 'customers:connexion', 'connexion');
-    $router->get('/', 'customers:deconnexion', 'deconnexion');
+    $router->get('/connexion', 'customers:connexion', 'connexion');
+    $router->post('/connexion', 'customers:connexion', 'connexion');
+    $router->get('/deconnexion', 'customers:deconnexion', 'deconnexion');
 
     return $router;
 }
