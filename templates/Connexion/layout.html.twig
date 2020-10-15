@@ -10,28 +10,18 @@
         <title>{% block title %}{% endblock %} | Ayoubi</title>
 
         {% block styles %}
-            {% include './_styles.html.twig' %}
+            {% include 'Connexion/_styles.html.twig' %}
         {% endblock %}
     </head>
 
     <body>
 
-        <div class="pusher">
-            {% block header %}
-                {% include './_header.html.twig' %}
-            {% endblock %}
-
-            {% block breadcrumb %}{% endblock %}
-
+        <div class="ui middle aligned center aligned grid">
             {% block content %}{% endblock %}
-
-            {% block footer %}
-                {% include './_footer.html.twig' %}
-            {% endblock %}
         </div>
 
         {% block scripts %}
-            {% include './_scripts.html.twig' %}
+            {% include 'Connexion/_scripts.html.twig' %}
         {% endblock %}
     </body>
 </html>
