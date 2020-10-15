@@ -84,7 +84,7 @@ class CustomersController extends AbstractController
             $alert = choixAlert($message);
         }
 
-        echo $this->twig->render('connexion.html.twig', [
+        echo $this->twig->render('Connexion/connexion.html.twig', [
             'username' => $username,
             'alert' => $alert,
         ]);
