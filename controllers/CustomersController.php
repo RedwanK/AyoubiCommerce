@@ -47,16 +47,16 @@ class CustomersController extends AbstractController
             if ($customer && $password == $customer->getPassword()) {
                 /* Connect customer */
                 $_SESSION['connect'] = 1;
-                
+
                 /* Create cookie */
                 if (isset($_POST['check_connect'])) {
                     setcookie(
-                        'log', 
-                        $customer->getKeySecret(), 
-                        time() + 365 * 24 * 3600, 
-                        null, 
-                        null, 
-                        false, 
+                        'log',
+                        $customer->getKeySecret(),
+                        time() + 365 * 24 * 3600,
+                        null,
+                        null,
+                        false,
                         true
                     );
                 }
@@ -65,13 +65,55 @@ class CustomersController extends AbstractController
                 header('location: ../');
                 exit();
             }
-            
+
             header('location: ../connexion?error=INCONNUE&email=' . $email);
-            
+            exit();
+
+        }
+
+        $email = null;
+        $alert = null;
+
+        if (isset($_GET['email'])) {
+            $email = htmlspecialchars($_GET['email']);
+        }
+
+        /* Check if error exist */
+        if (isset($_GET['error'])) {
+            $message = htmlspecialchars($_GET['error']);
+            $alert = choixAlert($message);
         }
 
         echo $this->twig->render('connexion.html', [
-            'name' => 'DARYL',
+            'email' => $email,
+            'alert' => $alert,
         ]);
+    }
+
+    /**
+     * Disconnection page
+     */
+    public function deconnexion()
+    {
+        /* Initialize the session */
+        session_start();
+        /* Desactivate the session */
+        session_unset();
+        /* Destroy the session */
+        session_destroy();
+        /* Destroy the cookie : remove x secondes to time */
+        setcookie(
+            'log', 
+            '', 
+            time() - 3444,
+            null, 
+            null, 
+            false, 
+            true
+        );
+
+        /* Redirect to home */
+        header('location: ../');
+        exit();
     }
 }

@@ -1,3 +1,4 @@
 <?php
 define('MESSAGE_ERREUR', 'ERROR');
 define('MESSAGE_SUCCESS', 'SUCCESS');
+define('INCONNUE', 'Identifiants incorrects.');

@@ -1,6 +1,11 @@
 <?php
 require_once 'config/twig.php';
+require_once PATH_LIB.'utils.php';
+require_once PATH_TEXTES.'FR-fr.php';
+
+/* Controllers */
 require_once 'controllers/HomeController.php';
+require_once 'controllers/CustomersController.php';
 
 // Racine folders
 define('PATH_CONTROLLERS', './controllers/');

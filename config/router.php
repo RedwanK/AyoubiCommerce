@@ -6,6 +6,7 @@ function routes($router) {
 
     /* Customers */
     $router->get('/', 'customers:connexion', 'connexion');
+    $router->get('/', 'customers:deconnexion', 'deconnexion');
 
     return $router;
 }
