@@ -7,6 +7,7 @@ abstract class DAO
 
     private $erreur; //stocke les messages d'erreurs associées au PDOException
     private $debug;
+    protected $entityName;
 
     public function getErreur()
     {
@@ -79,6 +80,19 @@ abstract class DAO
                 die($e->getMessage());
             }
 
+            $this->erreur = 'query';
+            $res = false;
+        }
+        return $res;
+    }
+
+    public function findBy(string $field, string $value): array
+    {
+        $request = "SELECT * FROM $this->entityName WHERE $field = $value";
+        try {
+            $pdos = $this->requete($request);
+            $res = $pdos->fetchAll();
+        } catch (PDOException $e) {
             $this->erreur = 'query';
             $res = false;
         }

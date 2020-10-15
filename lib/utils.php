@@ -19,3 +19,16 @@ function getFlashMessage($message)
   }
   return $alert;
 }
+
+
+function stripAccents(string $string){
+    return strtr(utf8_decode($string), utf8_decode('àáâçèéêëïñôùûüÀÁÂÇÈÉÊËÏÑÔÙÛ'),'aaaceeeeinouuuAAACEEEEINOUU');
+}
+
+function slugify(string $string)
+{
+    $strippedString = stripAccents($string);
+    $normalizedString = preg_replace('/\s+/', ' ', $strippedString);
+    $slug = str_replace(' ','-', $normalizedString);
+    return $slug;
+}
