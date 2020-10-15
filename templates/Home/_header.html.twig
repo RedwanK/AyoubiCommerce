@@ -4,7 +4,7 @@
             <a class="toc item"><i class="sidebar icon"></i></a>
             <a class="active item">Accueil</a>
             <div class="right item">
-                <a class="ui inverted button">Connexion</a>
+                {% if session['connect'] is not defined %}<a class="ui inverted button" href="/connexion">Connexion</a>{% else %}<a class="ui inverted button" href="/deconnexion">Déconnexion</a>{% endif %}
                 <a class="ui inverted button">Créer un compte</a>
             </div>
         </div>
