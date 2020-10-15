@@ -1,11 +1,14 @@
 <?php
 namespace App\Models;
 
+use App\Entity\Customers;
+
 require_once PATH_ENTITY . 'Customers.php';
 require_once 'DAO.php';
 require_once 'CustomersStructure.php';
 class CustomersDAO extends DAO
 {
+    protected $entityName = 'customers';
     public function getCustomerByKeySecret($log)
     {
         $requete = "SELECT * FROM Customers WHERE key_secret = ?";

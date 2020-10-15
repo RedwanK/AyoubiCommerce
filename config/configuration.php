@@ -10,6 +10,7 @@ define('PATH_LIB', './lib/');
 define('PATH_MODELS', './models/');
 define('PATH_VIEWS', './views/v_');
 define('PATH_TEXTES', './languages/');
+define('PATH_UTILS', './utils/');
 
 define('PATH_CSS', PATH_ASSETS . 'css/');
 define('PATH_IMG', PATH_ASSETS . 'images/');
