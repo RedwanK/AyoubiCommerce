@@ -3,7 +3,7 @@ require_once 'config/twig.php';
 require_once 'controllers/HomeController.php';
 
 // Racine folders
-define('PATH_CONTROLLERS', './controllers/c_');
+define('PATH_CONTROLLERS', './controllers/');
 define('PATH_ENTITY', './entities/');
 define('PATH_ASSETS', './assets/');
 define('PATH_LIB', './lib/');
