@@ -9,7 +9,7 @@ interface CustomersStructure
     const ADDRESS = 'address';
     const USERNAME = 'username';
     const PASSWORD = 'password';
-    const KEY_SECRET = 'keySecret';
+    const KEY_SECRET = 'key_secret';
 }
 
 

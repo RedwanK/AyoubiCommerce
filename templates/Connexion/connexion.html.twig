@@ -12,6 +12,7 @@ Connexion
             Connectez vous
         </div>
     </h2>
+
     <form class="ui large form" method="post" action="/connexion" enctype="multipart/form-data">
         <div class="ui stacked segment">
             <div class="field">
@@ -36,9 +37,8 @@ Connexion
                 <button class="ui fluid large teal submit button" type="submit">Connexion</button>
             </div>
         </div>
-        <div class="ui error message">
-            {{ alert ? alert : '' }}
-        </div>
+        {% include './_message.html.twig' %}
+        <div class="ui error message"></div>
     </form>
 
     <div class="ui message">

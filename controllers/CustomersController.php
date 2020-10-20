@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Customers;
+use App\Models\CustomersDAO;
+
 require_once 'AbstractController.php';
 require_once PATH_MODELS . 'CustomersDAO.php';
 require_once PATH_ENTITY . 'Customers.php';
@@ -18,7 +21,10 @@ class CustomersController extends AbstractController
      */
     public function connexion()
     {
-        $customersDAO = new \App\Models\CustomersDAO();
+        $customersDAO = new CustomersDAO();
+
+        $username = null;
+        $alert = null;
 
         /* Check if cookie exist */
         if (!empty($_COOKIE['log']) && !isset($_SESSION['connect'])) {
@@ -27,7 +33,7 @@ class CustomersController extends AbstractController
             $customer = $customersDAO->getCustomerByKeySecret($log);
             if ($customer) {
                 /* Connect customer */
-                $_SESSION['connect'] = 1;
+                $this->connect($customer);
 
                 /* Redirect to home */
                 header('location: ../');
@@ -46,7 +52,7 @@ class CustomersController extends AbstractController
 
             if ($customer && $password == $customer->getPassword()) {
                 /* Connect customer */
-                $_SESSION['connect'] = 1;
+                $this->connect($customer);
 
                 /* Create cookie */
                 if (isset($_POST['check_connect'])) {
@@ -66,28 +72,34 @@ class CustomersController extends AbstractController
                 exit();
             }
 
-            header('location: ../connexion?error=INCONNUE&username=' . $username);
+            header('location: ../connexion?message=INCONNUE&username=' . $username);
             exit();
 
         }
 
-        $username = null;
-        $alert = null;
+        /* Check if message exist */
+        $alert = checkMessage();
 
-        if (isset($_GET['username'])) {
-            $username = htmlspecialchars($_GET['username']);
-        }
-
-        /* Check if error exist */
-        if (isset($_GET['error'])) {
-            $message = htmlspecialchars($_GET['error']);
-            $alert = choixAlert($message);
-        }
+        /* Get parameter in URL */
+        $username = getParameter('username');
 
         echo $this->twig->render('Connexion/connexion.html.twig', [
             'username' => $username,
             'alert' => $alert,
         ]);
+    }
+
+    /**
+     * Create session variables
+     */
+    private function connect($customer) {
+        $_SESSION['connect'] = 1;
+        $_SESSION['customer'] = [
+            'firstname' => $customer->getFirstname(),
+            'familyname' => $customer->getFamilyname(),
+            'address' => $customer->getAddress(),
+            'username' => $customer->getUsername(),
+        ];
     }
 
     /**
@@ -122,8 +134,87 @@ class CustomersController extends AbstractController
      */
     public function register()
     {
-        echo $this->twig->render('Connexion/register.html.twig', [
+        $customersDAO = new CustomersDAO();
+
+        $alert = null;
+        $firstname = null;
+        $familyname = null;
+        $address = null;
+        $username = null;
+
+        if (!empty($_POST['firstname']) &&
+            !empty($_POST['familyname']) &&
+            !empty($_POST['address']) &&
+            !empty($_POST['username']) &&
+            !empty($_POST['password']) &&
+            !empty($_POST['confirmpassword'])) {
+
+            $firstname = htmlspecialchars($_POST['firstname']);
+            $familyname = htmlspecialchars($_POST['familyname']);
+            $address = htmlspecialchars($_POST['address']);
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
+            $confirmpassword = htmlspecialchars($_POST['confirmpassword']);
+
+            /* Check if username doesnt exist */
+            $customer = $customersDAO->getCustomerByUsername($username);
+            if ($customer) {
+                header('location: ../creer-compte?message=USERNAME_TAKEN&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                exit();
+            }
+
+            /* Check passwords are the same */
+            if ($password != $confirmpassword) {
+                header('location: ../creer-compte?message=PASSWORDS_NOT_SAME&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                exit();
+            }
             
+            /* Hash password */
+            $password = md5($password);
+
+            /* Create key secret */
+            $keySecret = md5(md5(time() . 'chachacha') . $username . time());
+            
+            $customer = new Customers(
+                null,
+                $firstname,
+                $familyname,
+                $address,
+                $username,
+                $password,
+                $keySecret
+            );
+
+            $res = $customersDAO->newCustomer($customer);
+
+            if (!$res) {
+                header('location: ../creer-compte?message=INSERT&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                exit();
+            } /* Error case */
+
+            /* Success case : redirect to connexion page */
+            header('location: ../connexion?message=INSERT_SUCCESS&username=' . $username);
+            exit();
+
+        }
+
+        /* Check if message exist */
+        $alert = checkMessage();
+
+        /* Get parameters in URL */
+        $firstname = getParameter('firstname');
+        $familyname = getParameter('familyname');
+        $address = getParameter('address');
+        $username = getParameter('username');
+        
+        echo $this->twig->render('Connexion/register.html.twig', [
+            'alert' => $alert,
+            'firstname' => $firstname,
+            'familyname' => $familyname,
+            'address' => $address,
+            'username' => $username,
         ]);
     }
+
+    
 }

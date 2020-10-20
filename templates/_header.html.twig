@@ -2,10 +2,9 @@
     <div class="ui container">
         <div class="ui large secondary inverted pointing menu">
             <a class="toc item"><i class="sidebar icon"></i></a>
-            <a class="active item">Accueil</a>
+            {% include './Menu/_menu.html.twig' %}
             <div class="right item">
-                <a class="ui inverted button">Connexion</a>
-                <a class="ui inverted button">Créer un compte</a>
+                {% include './Menu/_menu-button.html.twig' %}
             </div>
         </div>
     </div>
@@ -14,10 +13,9 @@
 
 <div class="ui large top fixed hidden menu">
     <div class="ui container">
-        <a class="active item">Accueil</a>
+        {% include './Menu/_menu.html.twig' %}
         <div class="right menu">
-            <div class="item"><a class="ui button">Connexion</a></div>
-            <div class="item"><a class="ui primary button">Créer un compte</a></div>
+            {% include './Menu/_menu-button-scroll.html.twig' %}
         </div>
     </div>
 </div>
