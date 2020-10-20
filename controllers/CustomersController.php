@@ -116,4 +116,14 @@ class CustomersController extends AbstractController
         header('location: ../');
         exit();
     }
+
+    /**
+     * Add a new customer
+     */
+    public function register()
+    {
+        echo $this->twig->render('Connexion/register.html.twig', [
+            
+        ]);
+    }
 }

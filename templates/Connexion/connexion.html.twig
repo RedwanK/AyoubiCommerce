@@ -1,7 +1,7 @@
 {% extends 'Connexion/layout.html.twig' %}
 
 {% block title %}
-    Connexion
+Connexion
 {% endblock %}
 
 {% block content %}
@@ -16,14 +16,14 @@
         <div class="ui stacked segment">
             <div class="field">
                 <div class="ui left input">
-                    <input required value="{{ username ? username : '' }}" name="username" type="text" class="form-control"
-                           id="username" placeholder="Nom d'utilisateur">
+                    <input required value="{{ username ? username : '' }}" name="username" type="text"
+                        class="form-control" id="username" placeholder="Nom d'utilisateur">
                 </div>
             </div>
             <div class="field">
                 <div class="ui left input">
                     <input required name="password" type="password" class="form-control" id="password"
-                           placeholder="Mot de passe">
+                        placeholder="Mot de passe">
                 </div>
             </div>
             <div class="field">
@@ -32,15 +32,17 @@
                         <input name="check_connect" class="form-check-input" type="checkbox" value="" checked="">
                         Rester connecter
                     </label>
+                </div>
+                <button class="ui fluid large teal submit button" type="submit">Connexion</button>
             </div>
-            <button class="ui fluid large teal submit button" type="submit">Connexion</button>
         </div>
+        <div class="ui error message">
+            {{ alert ? alert : '' }}
         </div>
-        <div class="ui error message"></div>
     </form>
 
     <div class="ui message">
-        Nouveau parmis nous ? <a href="#">Créer un compte</a>
+        Nouveau parmis nous ? <a href="/creer-compte">Créer un compte</a>
     </div>
 </div>
 {% endblock %}
