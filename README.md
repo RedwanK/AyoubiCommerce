@@ -26,3 +26,6 @@ const BD_DBNAME = 'webapp';
 const BD_USER = 'root';
 const BD_PWD = 'admadm';
 ```
+
+Enfin, importer le fichier ```AyoubiCommerce/db/webapp.sql``` dans votre base de données.
+Des comptes par défaut sont accessibles  dans le fichier ```AyoubiCommerce/db/passwords```.
