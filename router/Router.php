@@ -11,7 +11,8 @@ class Router {
     private $namedRoutes = [];
 
     public function __construct($url){
-        $this->url = $url;
+        $this->url = strtok($url, '?'); /* remove GET parameters */
+        $_SESSION['route'] = $this->url;
     }
 
     public function get($path, $callable, $name = null){

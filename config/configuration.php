@@ -17,8 +17,8 @@ define('PATH_IMG', PATH_ASSETS . 'images/');
 define('PATH_JS', PATH_ASSETS . 'js/');
 define('PATH_FONT', PATH_ASSETS . 'fonts/');
 
-require_once PATH_LIB . 'utils.php';
 require_once PATH_TEXTES . 'FR-fr.php';
+require_once PATH_LIB . 'utils.php';
 
 /* Controllers */
 require_once 'controllers/HomeController.php';
