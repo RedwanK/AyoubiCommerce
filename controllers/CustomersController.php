@@ -74,7 +74,6 @@ class CustomersController extends AbstractController
 
             header('location: ../connexion?message=INCONNUE&username=' . $username);
             exit();
-
         }
 
         /* Check if message exist */
@@ -92,7 +91,8 @@ class CustomersController extends AbstractController
     /**
      * Create session variables
      */
-    private function connect($customer) {
+    private function connect($customer)
+    {
         $_SESSION['connect'] = 1;
         $_SESSION['customer'] = [
             'firstname' => $customer->getFirstname(),
@@ -147,15 +147,15 @@ class CustomersController extends AbstractController
             !empty($_POST['address']) &&
             !empty($_POST['username']) &&
             !empty($_POST['password']) &&
-            !empty($_POST['confirmpassword'])) {
-
+            !empty($_POST['confirmpassword']) &&
+            isset($_POST['g-recaptcha-response'])) {
             $firstname = htmlspecialchars($_POST['firstname']);
             $familyname = htmlspecialchars($_POST['familyname']);
             $address = htmlspecialchars($_POST['address']);
             $username = htmlspecialchars($_POST['username']);
             $password = htmlspecialchars($_POST['password']);
             $confirmpassword = htmlspecialchars($_POST['confirmpassword']);
-
+            
             /* Check if username doesnt exist */
             $customer = $customersDAO->getCustomerByUsername($username);
             if ($customer) {
@@ -168,34 +168,43 @@ class CustomersController extends AbstractController
                 header('location: ../creer-compte?message=PASSWORDS_NOT_SAME&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
                 exit();
             }
+
+            /* Check captcha */
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . PRIVATE_KEY . '&response=' . $_POST['g-recaptcha-response']);
+            $resp = json_decode($verifyResponse);
+
+            if ($resp != null && $resp->success) {
+                /* Hash password */
+                $password = md5($password);
+
+                /* Create key secret */
+                $keySecret = md5(md5(time() . 'chachacha') . $username . time());
             
-            /* Hash password */
-            $password = md5($password);
+                $customer = new Customers(
+                    null,
+                    $firstname,
+                    $familyname,
+                    $address,
+                    $username,
+                    $password,
+                    $keySecret
+                );
 
-            /* Create key secret */
-            $keySecret = md5(md5(time() . 'chachacha') . $username . time());
-            
-            $customer = new Customers(
-                null,
-                $firstname,
-                $familyname,
-                $address,
-                $username,
-                $password,
-                $keySecret
-            );
+                $res = $customersDAO->newCustomer($customer);
 
-            $res = $customersDAO->newCustomer($customer);
+                if (!$res) {
+                    header('location: ../creer-compte?message=INSERT&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                    exit();
+                } /* Error case */
 
-            if (!$res) {
-                header('location: ../creer-compte?message=INSERT&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                /* Success case : redirect to connexion page */
+                header('location: ../connexion?message=INSERT_SUCCESS&username=' . $username);
                 exit();
-            } /* Error case */
-
-            /* Success case : redirect to connexion page */
-            header('location: ../connexion?message=INSERT_SUCCESS&username=' . $username);
-            exit();
-
+            } else {
+                /* Captcha error */
+                header('location: ../creer-compte?message=CAPTCHA&firstname=' . $firstname . '&familyname=' . $familyname . '&address=' . $address . '&username=' . $username);
+                exit();
+            }
         }
 
         /* Check if message exist */
@@ -213,8 +222,7 @@ class CustomersController extends AbstractController
             'familyname' => $familyname,
             'address' => $address,
             'username' => $username,
+            'siteKey' => PUBLIC_KEY
         ]);
     }
-
-    
 }

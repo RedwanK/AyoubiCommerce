@@ -32,6 +32,11 @@ function getFlashMessage($message)
       $alert['message'] = MESSAGE_INSERT_SUCCESS;
       $alert['color'] = 'green';
       break;
+    case 'CAPTCHA':
+      $alert['type'] = 'CAPTCHA';
+      $alert['message'] = MESSAGE_CAPTCHA;
+      $alert['color'] = 'red';
+      break;
     case 'SUCCESS':
       $alert['type'] = 'SUCCESS';
       $alert['message'] = MESSAGE_SUCCESS;
