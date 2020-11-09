@@ -26,4 +26,17 @@ class ProductsDAO extends DAO
         }
 
     }
+
+    public function getProductBySlug($slug)
+    {
+        $requete = "SELECT * FROM Products WHERE " . ProductsStructure::SLUG . " = ?";
+        $donnees = array($slug);
+        $res = $this->queryRow($requete, $donnees);
+
+        if ($res) {
+            return new Products($res[ProductsStructure::ID], $res[ProductsStructure::NAME], $res[ProductsStructure::DESCRIPTION], $res[ProductsStructure::PRICE], $res[ProductsStructure::SLUG]);
+        } else {
+            return null;
+        }
+    }
 }

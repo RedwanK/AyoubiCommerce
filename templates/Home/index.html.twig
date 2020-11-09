@@ -17,65 +17,25 @@ Accueil
 {% endblock %}
 
 {% block content %}
-<!--Page Contents-->
 <div class="ui vertical stripe segment">
-    <div class="ui middle aligned stackable grid container">
-        <div class="row">
-            <div class="eight wide column">
-                <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio
-                    fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta,
-                    temporibus ullam vel voluptatem.
-                </p>
-                <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio
-                    fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta,
-                    temporibus ullam vel voluptatem.
-                </p>
-            </div>
-            <div class="six wide right floated column">
-                <img class="ui large bordered rounded image" src="../assets/images/logo.png"
-                    alt="Logo ayoubi commerce" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="center aligned column">
-                <a class="ui huge button">Lorem ipsum</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="ui vertical stripe quote segment">
-    <div class="ui equal width stackable internally celled grid">
-        <div class="center aligned row">
-            <div class="column">
-                <h3>Lorem ipsum</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-            </div>
-            <div class="column">
-                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="ui vertical stripe segment">
-    <div class="ui text container">
+    <div id="container-products" class="ui text container">
+        {% include './_message.html.twig' %}
         {% for product in products %}
-        <h3 class="ui header">{{ product.name }}</h3>
-        <div class="meta">
-            <span class="price">{{ product.price }} €</span>
-        </div>
-        <p>
-            {{ product.description }}
-        </p>
-        <a class="ui large button">Voir plus : {{ product.slug }}</a>
+        <form class="ui form" method="post" action="/ajout-pannier" enctype="multipart/form-data">
+            <h3 class="ui header">{{ product.name }}</h3>
+            <div class="ui meta">
+                <span class="price">{{ product.price }} €</span>
+            </div>
+            <p>
+                {{ product.description }}
+            </p>
+            <div class="three wide field">
+                <input type="number" name="quantity" value="1" min="1" placeholder="Quantite">
+            </div>
+            <input type="text" name="slug" value="{{ product.slug }}" style="display: none;">
+            <button class="ui button" type="submit">Ajouter au panier</button>
+        </form>
+        <div class="ui header divider"></div>
         {% endfor %}
     </div>
 </div>
