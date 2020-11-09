@@ -1,1 +1,4 @@
 <a class="{{ session['route'] == '/' ? 'active' : '' }} item" href="/">Accueil</a>
+{% for category in categories %}
+    <a class="{{ session['route'] == '/' ? 'active' : '' }} item" href="/">{{ category.name }}</a>
+{% endfor %}

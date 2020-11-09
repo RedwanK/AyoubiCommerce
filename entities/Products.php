@@ -17,13 +17,16 @@ class Products
 
     private $slug;
 
-    public function __construct($id, $name, $description, $price, $slug = null)
+    private $category;
+
+    public function __construct($id, $name, $description, $price, $slug = null, $category = null)
     {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->slug = null === $slug ? $slug : slugify($name);
+        $this->slug = null !== $slug ? $slug : slugify($name);
+        $this->category = $category;
     }
 
     public function getId()
@@ -79,5 +82,25 @@ class Products
     {
         $this->slug = $slug;
         return $this;
+    }
+
+    /**
+     * @param null $category
+     *
+     * @return Products
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

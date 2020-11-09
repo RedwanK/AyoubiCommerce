@@ -8,6 +8,7 @@ interface ProductsStructure
     const DESCRIPTION = 'description';
     const PRICE = 'price';
     const SLUG = 'slug';
+    const CATEGORY = 'category';
 }
 
 
