@@ -88,7 +88,7 @@ abstract class DAO
 
     public function findBy(string $field, string $value): array
     {
-        $request = "SELECT * FROM $this->entityName WHERE $field = $value";
+        $request = "SELECT * FROM $this->entityName WHERE $field = '$value'";
         try {
             $pdos = $this->requete($request);
             $res = $pdos->fetchAll();
