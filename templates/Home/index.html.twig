@@ -1,83 +1,82 @@
 {% extends './layout.html.twig' %}
 
 {% block title %}
-    Accueil
+Accueil
 {% endblock %}
 
 {% block header %}
-    {% include 'Home/_header.html.twig' %}
+{% include 'Home/_header.html.twig' %}
 {% endblock %}
 
 {% block scripts %}
-    {% include 'Home/_scripts.html.twig' %}
+{% include 'Home/_scripts.html.twig' %}
 {% endblock %}
 
 {% block styles %}
-    {% include 'Home/_styles.html.twig' %}
+{% include 'Home/_styles.html.twig' %}
 {% endblock %}
 
 {% block content %}
-    <!--Page Contents-->
-        <div class="ui vertical stripe segment">
-            <div class="ui middle aligned stackable grid container">
-                <div class="row">
-                    <div class="eight wide column">
-                        <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta, temporibus ullam vel voluptatem.
-                        </p>
-                        <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta, temporibus ullam vel voluptatem.
-                        </p>
-                    </div>
-                    <div class="six wide right floated column">
-                        <img
-                                class="ui large bordered rounded image"
-                                src="../assets/images/logo.png"
-                         alt="Logo ayoubi commerce"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="center aligned column">
-                        <a class="ui huge button">Lorem ipsum</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui vertical stripe quote segment">
-            <div class="ui equal width stackable internally celled grid">
-                <div class="center aligned row">
-                    <div class="column">
-                        <h3>Lorem ipsum</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    <div class="column">
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui vertical stripe segment">
-            <div class="ui text container">
-                <h3 class="ui header">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+<!--Page Contents-->
+<div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+        <div class="row">
+            <div class="eight wide column">
+                <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta, temporibus ullam vel voluptatem.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio
+                    fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta,
+                    temporibus ullam vel voluptatem.
                 </p>
-                <a class="ui large button">Voir plus</a>
-                <h4 class="ui horizontal header divider">
-                    <a href="#root">Cliquez ici</a>
-                </h4>
-                <h3 class="ui header">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+                <h3 class="ui header">Lorem ipsum dolor sit amet</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta, temporibus ullam vel voluptatem.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut consectetur debitis distinctio
+                    fugit iure minus molestias non perspiciatis provident quae, quia quo ratione repellat soluta,
+                    temporibus ullam vel voluptatem.
                 </p>
-                <a class="ui large button">Voir plus</a>
+            </div>
+            <div class="six wide right floated column">
+                <img class="ui large bordered rounded image" src="../assets/images/logo.png"
+                    alt="Logo ayoubi commerce" />
             </div>
         </div>
+        <div class="row">
+            <div class="center aligned column">
+                <a class="ui huge button">Lorem ipsum</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+        <div class="center aligned row">
+            <div class="column">
+                <h3>Lorem ipsum</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+            </div>
+            <div class="column">
+                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui vertical stripe segment">
+    <div class="ui text container">
+        {% for product in products %}
+        <h3 class="ui header">{{ product.name }}</h3>
+        <div class="meta">
+            <span class="price">{{ product.price }} €</span>
+        </div>
+        <p>
+            {{ product.description }}
+        </p>
+        <a class="ui large button">Voir plus : {{ product.slug }}</a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

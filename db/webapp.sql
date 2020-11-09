@@ -85,11 +85,11 @@ CREATE TABLE `Products` (
 -- Déchargement des données de la table `Products`
 --
 
-INSERT INTO `Products` (`id`, `name`, `description`, `price`) VALUES
-(1, 'Raspberry Pi 4', 'Raspberry Pi 4 Modèle B 4 Go ARM-Cortex-A72 4 x 1,50 GHz, 4 Go de RAM, WLAN-AC, Bluetooth 5, LAN, 4 x USB, 2 x Micro HDMI', 58.44),
-(2, 'Module 4 canaux 5V', 'SeeKool 5V 4 canaux Module de Relais Module pour Arduino UNO R3 Mega 2560 1280 DSP Arm PIC AVR STM32 Raspberry Pi', 6.09),
-(3, 'Adaptateur USB3.0 Sata 3.5 Pouces', 'UGREEN USB Disque Dur Adaptateur USB 3.0 vers SATA III Câble USB 3.0 pour 2,5 3,5 Pouces HDD SSD Driver jusqu\'à 12To Supporte UASP', 12.9),
-(4, 'Buzzer Alarme 12V', 'ICQUANZX 5 Pcs DC 3-24V 85dB Son Alarme Électronique Buzzer Noir 23 x 12mm', 7.99);
+INSERT INTO `Products` (`id`, `name`, `description`, `price`, `slug`) VALUES
+(1, 'Raspberry Pi 4', 'Raspberry Pi 4 Modèle B 4 Go ARM-Cortex-A72 4 x 1,50 GHz, 4 Go de RAM, WLAN-AC, Bluetooth 5, LAN, 4 x USB, 2 x Micro HDMI', 58.44, 'raspberry-pi-4'),
+(2, 'Module 4 canaux 5V', 'SeeKool 5V 4 canaux Module de Relais Module pour Arduino UNO R3 Mega 2560 1280 DSP Arm PIC AVR STM32 Raspberry Pi', 6.09, 'module-4-canaux-5v'),
+(3, 'Adaptateur USB3.0 Sata 3.5 Pouces', 'UGREEN USB Disque Dur Adaptateur USB 3.0 vers SATA III Câble USB 3.0 pour 2,5 3,5 Pouces HDD SSD Driver jusqu\'à 12To Supporte UASP', 12.9, 'adaptateur-usb3.0-sata-3.5-pouces'),
+(4, 'Buzzer Alarme 12V', 'ICQUANZX 5 Pcs DC 3-24V 85dB Son Alarme Électronique Buzzer Noir 23 x 12mm', 7.99, 'buzzer-alarme-12v');
 
 --
 -- Index pour les tables déchargées
