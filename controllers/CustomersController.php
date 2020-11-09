@@ -90,6 +90,8 @@ class CustomersController extends AbstractController
 
     /**
      * Create session variables
+     *
+     * @var Customers $customer
      */
     private function connect($customer)
     {

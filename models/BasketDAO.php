@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Models;
 
 use App\Entity\Basket;
+use App\Models\DAO;
 
 require_once PATH_ENTITY . 'Basket.php';
 require_once 'DAO.php';
@@ -42,6 +44,28 @@ class BasketDAO extends DAO
         if ($res) {
             return new Basket($res[BasketStructure::CUSTOMER], $res[BasketStructure::PRODUCT], $res[BasketStructure::QUANTITY]);
         } else {
+            return null;
+        }
+    }
+    /**
+     * @param int $customerId
+     *
+     * @return Basket[]|null
+     */
+    public function getBasketByCustomer(int $customerId)
+    {
+        $requete = "SELECT * FROM basket WHERE customer = ?";
+        $parameters = [$customerId];
+        $results = $this->queryAll($requete, $parameters);
+
+        if ($results) {
+            foreach($results as $result){
+                /** @var Basket[] $entries  */
+                $entries[] = new \App\Entity\Basket($result['customer'], $result['product'], $result['quantity']);
+            }
+            return $entries;
+        } else {
+            var_dump($customerId);
             return null;
         }
     }

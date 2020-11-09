@@ -28,4 +28,5 @@ require_once PATH_LIB . 'utils.php';
 /* Controllers */
 require_once 'controllers/HomeController.php';
 require_once 'controllers/CustomersController.php';
+require_once 'controllers/PanierController.php';
 require_once 'controllers/BasketController.php';

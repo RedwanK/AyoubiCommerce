@@ -1,6 +1,8 @@
 <?php
 namespace App\Entity;
 
+namespace App\Entity;
+
 class Basket
 {
     private $customer;
