@@ -7,3 +7,5 @@ define('MESSAGE_PASSWORDS_NOT_SAME', 'Les mots de passe ne sont pas identiques.'
 define('MESSAGE_INSERT', 'Une erreur est survenue, veuillez ressayer.');
 define('MESSAGE_INSERT_SUCCESS', 'Utilisateur créé avec grand succès.');
 define('MESSAGE_CAPTCHA', 'Erreur du captcha, veuillez ressayer.');
+define('MESSAGE_ADD_BASKET', 'Article ajouté avec grand succès.');
+define('MESSAGE_ERROR_BASKET', 'Une erreur est survenue lors de l\'ajout au panier, veuillez ressayer.');
