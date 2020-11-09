@@ -11,5 +11,9 @@ function routes($router) {
     $router->get('/creer-compte', 'customers:register', 'register');
     $router->post('/creer-compte', 'customers:register', 'register');
 
+    /* Basket */
+    $router->post('/ajout-pannier', 'basket:add', 'add');
+    $router->post('/ajout-pannier-api', 'basket:addApi', 'addApi');
+
     return $router;
 }

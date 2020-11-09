@@ -25,9 +25,13 @@ class HomeController extends AbstractController
         $products = $productsDAO->getAllProducts();
         $categories = $categoryDAO->getAllCategories();
 
+        /* Check if message exist */
+        $alert = checkMessage();
+
         echo $this->twig->render('Home/index.html.twig', [
             'products' => $products,
-            'categories' => $categories
+            'categories' => $categories,
+            'alert' => $alert,
         ]);
     }
 }

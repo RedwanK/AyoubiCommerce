@@ -12,6 +12,16 @@ function getFlashMessage($message)
       $alert['message'] = MESSAGE_INCONNUE;
       $alert['color'] = 'red';
       break;
+    case 'ADD_BASKET':
+      $alert['type'] = 'ADD_BASKET';
+      $alert['message'] = MESSAGE_ADD_BASKET;
+      $alert['color'] = 'green';
+      break;
+    case 'ERROR_BASKET':
+      $alert['type'] = 'ERROR_BASKET';
+      $alert['message'] = MESSAGE_ERROR_BASKET;
+      $alert['color'] = 'red';
+      break;
     case 'USERNAME_TAKEN':
       $alert['type'] = 'USERNAME_TAKEN';
       $alert['message'] = MESSAGE_USERNAME_TAKEN;
