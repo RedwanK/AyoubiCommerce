@@ -10,7 +10,7 @@ require_once 'CategoryStructure.php';
 
 class ProductsDAO extends DAO
 {
-    protected $entityName = "Products";
+    protected $entityName = "products";
     public function getAllProducts()
     {
         $requete = "SELECT * FROM Products ORDER BY price DESC";

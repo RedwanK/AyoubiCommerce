@@ -65,7 +65,6 @@ class BasketDAO extends DAO
             }
             return $entries;
         } else {
-            var_dump($customerId);
             return null;
         }
     }
