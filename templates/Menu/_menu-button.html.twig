@@ -1,0 +1,10 @@
+{% if session['connect'] is not defined %}
+<a class="ui inverted button" href="/connexion">Connexion</a>
+<a class="ui inverted button" href="/creer-compte">Créer un compte</a>
+{% else %}
+<a class="ui inverted button">
+    <i class="user icon"></i>
+    {{ session['customer'].username }}
+</a>
+<a class="ui inverted button" href="/deconnexion">Déconnexion</a>
+{% endif %}
