@@ -61,7 +61,7 @@ class BasketDAO extends DAO
         if ($results) {
             foreach($results as $result){
                 /** @var Basket[] $entries  */
-                $entries[] = new \App\Entity\Basket($result['customer'], $result['product'], $result['quantity']);
+                $entries[] = new \App\Entity\Basket($result[BasketStructure::CUSTOMER], $result[BasketStructure::PRODUCT], $result[BasketStructure::QUANTITY]);
             }
             return $entries;
         } else {
