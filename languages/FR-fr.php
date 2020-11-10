@@ -9,3 +9,4 @@ define('MESSAGE_INSERT_SUCCESS', 'Utilisateur créé avec grand succès.');
 define('MESSAGE_CAPTCHA', 'Erreur du captcha, veuillez ressayer.');
 define('MESSAGE_ADD_BASKET', 'Article ajouté avec grand succès.');
 define('MESSAGE_ERROR_BASKET', 'Une erreur est survenue lors de l\'ajout au panier, veuillez ressayer.');
+define('MESSAGE_ERROR_BASKET_VIEW', 'Erreur lors de la visualisation du panier.');

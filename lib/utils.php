@@ -8,54 +8,59 @@ function getFlashMessage($message)
     $alert = array();
     switch ($message) {
     case 'INCONNUE':
-      $alert['type'] = 'INCONNUE';
+      $alert['type']    = 'INCONNUE';
       $alert['message'] = MESSAGE_INCONNUE;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'ADD_BASKET':
-      $alert['type'] = 'ADD_BASKET';
+      $alert['type']    = 'ADD_BASKET';
       $alert['message'] = MESSAGE_ADD_BASKET;
-      $alert['color'] = 'green';
+      $alert['color']   = 'green';
       break;
     case 'ERROR_BASKET':
-      $alert['type'] = 'ERROR_BASKET';
+      $alert['type']    = 'ERROR_BASKET';
       $alert['message'] = MESSAGE_ERROR_BASKET;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'USERNAME_TAKEN':
-      $alert['type'] = 'USERNAME_TAKEN';
+      $alert['type']    = 'USERNAME_TAKEN';
       $alert['message'] = MESSAGE_USERNAME_TAKEN;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'PASSWORDS_NOT_SAME':
-      $alert['type'] = 'PASSWORDS_NOT_SAME';
+      $alert['type']    = 'PASSWORDS_NOT_SAME';
       $alert['message'] = MESSAGE_PASSWORDS_NOT_SAME;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'INSERT':
-      $alert['type'] = 'INSERT';
+      $alert['type']    = 'INSERT';
       $alert['message'] = MESSAGE_INSERT;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'INSERT_SUCCESS':
-      $alert['type'] = 'INSERT_SUCCESS';
+      $alert['type']    = 'INSERT_SUCCESS';
       $alert['message'] = MESSAGE_INSERT_SUCCESS;
-      $alert['color'] = 'green';
+      $alert['color']   = 'green';
       break;
     case 'CAPTCHA':
-      $alert['type'] = 'CAPTCHA';
+      $alert['type']    = 'CAPTCHA';
       $alert['message'] = MESSAGE_CAPTCHA;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
       break;
     case 'SUCCESS':
-      $alert['type'] = 'SUCCESS';
+      $alert['type']    = 'SUCCESS';
       $alert['message'] = MESSAGE_SUCCESS;
-      $alert['color'] = 'green';
+      $alert['color']   = 'green';
+      break;
+    case 'ERROR_BASKET_VIEW':
+      $alert['type']    = 'ERROR_BASKET_VIEW';
+      $alert['message'] = MESSAGE_ERROR_BASKET_VIEW;
+      $alert['color']   = 'red';
       break;
     default:
-      $alert['type'] = 'default';
+      $alert['type']    = 'default';
       $alert['message'] = MESSAGE_ERREUR;
-      $alert['color'] = 'red';
+      $alert['color']   = 'red';
   }
     return $alert;
 }

@@ -1,0 +1,51 @@
+{% extends './layout.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+{% block header %}
+    {% include 'Home/_header.html.twig' %}
+{% endblock %}
+
+{% block scripts %}
+    {% include 'Home/_scripts.html.twig' %}
+{% endblock %}
+
+{% block styles %}
+    {% include 'Home/_styles.html.twig' %}
+{% endblock %}
+{% block content %}
+{% if products %}
+    {% for product in products %}
+        <div class="ui items">
+            <div class="item">
+                <div class="image">
+                    <img src="https://via.placeholder.com/150">
+                </div>
+                <div class="content">
+                    <a class="header">{{ product.produit.name }}</a>
+                    <div class="meta">
+                        <span>Description</span>
+                    </div>
+                    <div class="description">
+                        <p>{{ product.produit.description }}</p>
+                    </div>
+                    <div class="extra">
+                        {{ product.produit.price ~'€' }}
+                    </div>
+                    <div class="extra">
+                        {{ 'quantité : ' ~ product.quantite }}
+                    </div>
+                    <div class="ui right floated button">
+                        Action
+                    </div>
+                </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="ui message">
+        <div class="header">
+            Panier vide
+        </div>
+        <p>Parcourez notre plateforme pour ajouter des produits à votre panier et les retrouver ici !</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -32,26 +32,60 @@ class BasketController extends AbstractController
         $this->addToBasket(true);
     }
 
+    public function view()
+    {
+        $customersDAO   = new CustomersDAO();
+        $basketDAO      = new BasketDAO();
+        $productDAO     = new ProductsDAO();
+        $customer       = null;
+        $basket         = null;
+        $products       = [];
+
+        if (array_key_exists('customer', $_SESSION)) {
+            $customer   = $customersDAO->getCustomerByUsername($_SESSION['customer']['username']);
+            $basket     = $basketDAO->getBasketByCustomer((int)$customer->getId());
+        }
+
+        if ($basket) {
+            foreach ($basket as $product) {
+                $products[] = [
+                    'produit' =>
+                        array_merge(...$productDAO->findBy('id', (int)$product->getProduct())),
+                    'quantite' =>
+                        $product->getQuantity()
+                ];
+            }
+        } else if (!$customer){ //else à garder mais if !customer à supprimer quand le panier anonyme sera géré
+            header('location: ../?message=ERROR_BASKET_VIEW');
+        }
+
+        echo $this->twig->render('Panier/view.html.twig', [
+            'products' => $products,
+            'basket'   => $basket
+        ]);
+        return;
+    }
+
     private function addToBasket($api)
     {
-        $productsDAO = new ProductsDAO();
+        $productsDAO  = new ProductsDAO();
         $customersDAO = new CustomersDAO();
-        $basketDAO = new BasketDAO();
+        $basketDAO    = new BasketDAO();
 
-        $slug = null;
-        $quantity = null;
-        $username = null;
+        $slug         = null;
+        $quantity     = null;
+        $username     = null;
 
         if (!empty($_POST['slug']) &&
             !empty($_POST['quantity']) &&
             isset($_SESSION['customer'])) {
-            $slug = htmlspecialchars($_POST['slug']);
+            $slug     = htmlspecialchars($_POST['slug']);
             $quantity = htmlspecialchars($_POST['quantity']);
             $username = $_SESSION['customer']['username'];
 
             /* Check if customer/product exist and quantity is correct */
             $customer = $customersDAO->getCustomerByUsername($username);
-            $product = $productsDAO->getProductBySlug($slug);
+            $product  = $productsDAO->getProductBySlug($slug);
             if (!$customer || !$product || $quantity < 1) {
                 if ($api) {
                     echo json_encode([
