@@ -46,7 +46,7 @@ class BasketController extends AbstractController
             $basket     = $basketDAO->getBasketByCustomer((int)$customer->getId());
         }
 
-        if ($basket and $customer) {
+        if ($basket) {
             foreach ($basket as $product) {
                 $products[] = [
                     'produit' =>
@@ -55,7 +55,7 @@ class BasketController extends AbstractController
                         $product->getQuantity()
                 ];
             }
-        } else {
+        } else if (!$customer){ //else à garder mais if !customer à supprimer quand le panier anonyme sera géré
             header('location: ../?message=ERROR_BASKET_VIEW');
         }
 
